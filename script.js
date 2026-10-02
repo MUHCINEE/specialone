@@ -79,8 +79,7 @@ Coca Zéro|10
 Sidi Ali 33cl|7
 Sidi Ali 75cl|25`;
 
-const $ = (s) => document.querySelector(s);
-const $$ = (s) => [...document.querySelectorAll(s)];
+const $ = (s) => document.querySelector(s); const $$ = (s) => [...document.querySelectorAll(s)];
 
 (function renderMenu() {
   const html = [];
@@ -100,7 +99,7 @@ const $$ = (s) => [...document.querySelectorAll(s)];
 
 /* ---------- Carrousel générique ---------- */
 function carousel({ track, prev, next, dots, perView, autoplay }) {
-  const el = $(track), n = el.children.length, dotsEl = $(dots);
+  const el = $(track), n = el.children.length, dotsEl =$(dots);
   let i = 0, timer;
   const max = () => n - perView();
   const go = (k) => {
@@ -123,8 +122,7 @@ function carousel({ track, prev, next, dots, perView, autoplay }) {
     }
     go(Math.min(i, max()));
   };
-  $(prev).onclick = () => { go(i - 1); restart(); };
-  $(next).onclick = () => { go(i + 1); restart(); };
+  $(prev).onclick = () => { go(i - 1); restart(); };$(next).onclick = () => { go(i + 1); restart(); };
   let sx = null;
   el.addEventListener('touchstart', (e) => (sx = e.touches[0].clientX), { passive: true });
   el.addEventListener('touchend', (e) => {
@@ -147,24 +145,34 @@ carousel({
 });
 
 /* ---------- Menu mobile ---------- */
-const burger = $('#burger'), mobile = $('#mobile');
-const closeMobile = () => { mobile.classList.remove('on'); burger.classList.remove('on'); burger.setAttribute('aria-expanded', 'false'); };
-burger.onclick = () => {
-  const on = mobile.classList.toggle('on');
-  burger.classList.toggle('on', on);
-  burger.setAttribute('aria-expanded', on);
-};
-$$('#mobile a').forEach((a) => (a.onclick = closeMobile));
+const burger = $('#burger'), mobile = $('#mobile'); const closeMobile = () => { mobile.classList.remove('on'); burger.classList.remove('on'); burger.setAttribute('aria-expanded', 'false'); }; burger.onclick = () => {   const on = mobile.classList.toggle('on');   burger.classList.toggle('on', on);   burger.setAttribute('aria-expanded', on); }; $$('#mobile a').forEach((a) => (a.onclick = closeMobile));
 
 /* ---------- Réservation ---------- */
 const WHATSAPP = '212667414091';
 const modal = $('#modal');
-const openModal = () => { closeMobile(); modal.classList.add('on'); $('#rName').focus(); };
-const closeModal = () => modal.classList.remove('on');
-$$('[data-res]').forEach((b) => (b.onclick = openModal));
-$('#modalClose').onclick = closeModal;
+const openModal = () => { closeMobile(); modal.classList.add('on'); $('#rName').focus(); }; const closeModal = () => modal.classList.remove('on'); $$('[data-res]').forEach((b) => (b.onclick = openModal));$('#modalClose').onclick = closeModal;
 modal.onclick = (e) => { if (e.target === modal) closeModal(); };
 addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+// تفعيل فتح التقويم والساعة تلقائياً عند النقر على الحقول في الحواسيب والهواتف
+const dateInput = $('#rDate');
+const timeInput = $('#rTime');
+
+if (dateInput) {
+  dateInput.addEventListener('click', () => {
+    if (typeof dateInput.showPicker === 'function') {
+      dateInput.showPicker();
+    }
+  });
+}
+
+if (timeInput) {
+  timeInput.addEventListener('click', () => {
+    if (typeof timeInput.showPicker === 'function') {
+      timeInput.showPicker();
+    }
+  });
+}
 
 $('#rSend').onclick = () => {
   const name = $('#rName').value.trim(), date = $('#rDate').value,
