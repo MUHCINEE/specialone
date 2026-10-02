@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Special One — Restaurant à Tanger</title>
+<meta name="description" content="Special One, restaurant à Tanger : pizzas, tacos, burgers, pâtes et cocktails frais.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="wrap nav">
+    <a href="#top" aria-label="Special One, accueil"><img class="logo" src="logos/logo.jpg" alt="Special One"></a>
+    <nav class="links" aria-label="Navigation principale">
+      <a href="#menu">Menu</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#philosophie">Philosophie</a>
+      
+      <a href="#avis">Avis</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="btn btn-pri nav-cta" data-res>Réserver</button>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="mobile" id="mobile" aria-label="Navigation mobile">
+    <a href="#menu">Menu</a>
+    <a href="#galerie">Galerie</a>
+    <a href="#philosophie">Philosophie</a>
+    
+    <a href="#avis">Avis</a>
+    <a href="#contact">Contact</a>
+    <button class="btn btn-pri" data-res>Réserver une table</button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <video autoplay muted loop playsinline poster="imgs/img5.jpg">
+      <source src="vids/vid1.mp4" type="video/mp4">
+    </video>
+    <div class="hero-in">
+      <h1>Special One</h1>
+      <p>Pizzas, tacos, burgers, pâtes et cocktails frais, préparés minute à Tanger. Une cuisine généreuse et un service rapide.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#menu">Voir le menu</a>
+        <a class="btn" href="#contact">Nous trouver</a>
+        <a class="btn" href="#avis">Avis clients</a>
+      </div>
+      <button class="btn btn-pri btn-lg" data-res>Réserver une table</button>
+    </div>
+  </section>
+
+  <section id="menu">
+    <div class="wrap">
+      <h2>La carte</h2>
+      <p class="lead">Tous les prix sont en dirhams marocains (DH).</p>
+      <div class="menu-card" id="menuCard"></div>
+    </div>
+  </section>
+
+  <section id="galerie">
+    <div class="wrap">
+      <h2>Galerie</h2>
+      <p class="lead">Nos cocktails maison et nos plats, tels qu'ils arrivent à table.</p>
+      <div class="viewport"><div class="track" id="galTrack">
+        <figure class="slide"><img src="imgs/img1.jpg" alt="Cocktail Tropical" loading="lazy"></figure>
+        <figure class="slide"><img src="imgs/img2.jpg" alt="Citron Menthe" loading="lazy"></figure>
+        <figure class="slide"><img src="imgs/img3.jpg" alt="Cocktail fruits rouges" loading="lazy"></figure>
+        <figure class="slide"><img src="imgs/img4.jpg" alt="Cocktail Brazilien" loading="lazy"></figure>
+        <figure class="slide"><img src="imgs/img5.jpg" alt="Pizza partagée à table" loading="lazy"></figure>
+      </div></div>
+      <div class="controls">
+        <button class="arrow" id="galPrev" aria-label="Photo précédente">←</button>
+        <button class="arrow" id="galNext" aria-label="Photo suivante">→</button>
+        <div class="dots" id="galDots"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="philosophie">
+    <div class="wrap">
+      <h2>Notre philosophie</h2>
+      <p class="lead">Trois engagements que nous tenons à chaque service.</p>
+      <div class="values">
+        <article class="value"><h3>Produits frais</h3><p>Des ingrédients de qualité, choisis avec soin et cuisinés le jour même.</p></article>
+        <article class="value"><h3>Service rapide</h3><p>Votre commande arrive chaude et à l'heure, sur place comme en livraison.</p></article>
+        <article class="value"><h3>Réservation simple</h3><p>Un appel ou un message WhatsApp suffit pour garder votre table.</p></article>
+      </div>
+      <article class="value wide"><h3>Le savoir-faire, avec passion</h3><p>Depuis 2025, notre équipe affine ses recettes : pâte à pizza, sauces maison, cuissons maîtrisées. Chaque assiette est préparée avec le même soin.</p></article>
+    </div>
+  </section>
+
+  <section id="avis">
+    <div class="wrap">
+      <h2>Avis clients</h2>
+      <p class="lead">Ce que disent nos invités.</p>
+      <div class="viewport"><div class="track" id="revTrack">
+        <article class="review"><div class="stars" aria-label="5 étoiles sur 5">★★★★★</div><p>Les pizzas sont généreuses et la pâte est parfaite. Le Cocktail Tropical m'a conquise, on reviendra !</p><span>Salma B.</span></article>
+        <article class="review"><div class="stars" aria-label="5 étoiles sur 5">★★★★★</div><p>Service rapide, burgers juteux et un cadre agréable. Le meilleur rapport qualité-prix du quartier.</p><span>Youssef A.</span></article>
+        <article class="review"><div class="stars" aria-label="4 étoiles sur 5">★★★★☆</div><p>Réservation par WhatsApp en deux minutes, table prête à notre arrivée. Les pâtes aux fruits de mer sont excellentes.</p><span>Imane R.</span></article>
+      </div></div>
+      <div class="controls">
+        <button class="arrow" id="revPrev" aria-label="Avis précédent">←</button>
+        <button class="arrow" id="revNext" aria-label="Avis suivant">→</button>
+        <div class="dots" id="revDots"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><img class="logo" src="logos/logo.jpg" alt="Special One"><p>Restaurant · Tanger · depuis 2025</p></div>
+      <div>
+        <h4>Nous trouver</h4>
+        <p>Rue Hamri Aamri, Tanger 90100</p>
+        <a href="https://maps.app.goo.gl/qFe6HUuUTqteDPo66" target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
+        <h4>Horaires</h4>
+        <p>Tous les jours, 12h00 – 23h00</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="tel:+212667414091">06 67 41 40 91</a>
+        <a href="https://wa.me/212667414091" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://www.instagram.com/special.one.tanger/" target="_blank" rel="noopener">Instagram @special.one.tanger</a>
+      </div>
+    </div>
+    <p class="legal">© 2025 Special One Restaurant, Tanger. Tous droits réservés. Prix en DH, TTC, susceptibles de changer.</p>
+  </div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="box">
+    <button class="close" id="modalClose" aria-label="Fermer">×</button>
+    <h3 id="modalTitle">Réserver une table</h3>
+    <p>Envoyez votre demande par WhatsApp ou appelez-nous.</p>
+    <input id="rName" placeholder="Votre nom" autocomplete="name">
+    <div class="row2"><input id="rDate" type="date" aria-label="Date"><input id="rTime" type="time" aria-label="Heure"></div>
+    <input id="rGuests" type="number" min="1" max="20" placeholder="Nombre de personnes">
+    <p class="err" id="rErr" role="alert"></p>
+    <button class="btn btn-pri" id="rSend">Envoyer sur WhatsApp</button>
+    <a class="btn" href="tel:+212667414091">Appeler 06 67 41 40 91</a>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
