@@ -1,5 +1,4 @@
-/* ---------- Menu ---------- */
-// "#" = catégorie, "##" = sous-groupe, "Nom|Prix" = plat. Modifiez ici pour mettre à jour la carte.
+/* ---------- Carte bilingue ---------- */
 const MENU = `#Pizza
 Pizza Margarita|45
 Pizza Quatre Fromage|55
@@ -80,22 +79,175 @@ Sidi Ali 33cl|7
 Sidi Ali 75cl|25`;
 
 const $ = (s) => document.querySelector(s); const $$ = (s) => [...document.querySelectorAll(s)];
+const dateInput = $('#rDate');
+const timeInput = $('#rTime');
 
-(function renderMenu() {
+const TEXT = {
+  fr: {
+    pageTitle: 'Special One — Restaurant à Tanger', navLabel: 'Navigation principale', mobileNavLabel: 'Navigation mobile',
+    menuNav: 'Menu', galleryNav: 'Galerie', philosophyNav: 'Philosophie', reviewsNav: 'Avis', contactNav: 'Contact',
+    reserveShort: 'Réserver', reserveTable: 'Réserver une table', openMenu: 'Ouvrir le menu', close: 'Fermer',
+    heroText: 'Pizzas, tacos, burgers, pâtes et cocktails frais, préparés minute à Tanger. Une cuisine généreuse et un service rapide.',
+    seeMenu: 'Voir le menu', findUs: 'Nous trouver', customerReviews: 'Avis clients', menuTitle: 'La carte',
+    pricesNote: 'Tous les prix sont en dirhams marocains (DH).', galleryTitle: 'Galerie',
+    galleryLead: "Nos cocktails maison et nos plats, tels qu'ils arrivent à table.", philosophyTitle: 'Notre philosophie',
+    philosophyLead: 'Trois engagements que nous tenons à chaque service.', freshTitle: 'Produits frais',
+    freshText: 'Des ingrédients de qualité, choisis avec soin et cuisinés le jour même.', fastTitle: 'Service rapide',
+    fastText: "Votre commande arrive chaude et à l'heure, sur place comme en livraison.", easyBookingTitle: 'Réservation simple',
+    easyBookingText: 'Un appel ou un message WhatsApp suffit pour garder votre table.',
+    craftTitle: 'Le savoir-faire, avec passion',
+    craftText: 'Depuis 2025, notre équipe affine ses recettes : pâte à pizza, sauces maison, cuissons maîtrisées. Chaque assiette est préparée avec le même soin.',
+    reviewsTitle: 'Avis clients', reviewsLead: 'Ce que disent nos invités.', previousPhoto: 'Photo précédente', nextPhoto: 'Photo suivante',
+    previousReview: 'Avis précédent', nextReview: 'Avis suivant', restaurantSince: 'Restaurant · Tanger · depuis 2025',
+    address: 'Rue Hamri Aamri, Tanger 90100', openMaps: 'Ouvrir dans Google Maps', hoursTitle: 'Horaires',
+    hours: 'Tous les jours, 12h00 – 23h00', legal: '© 2025 Special One Restaurant, Tanger. Tous droits réservés. Prix en DH, TTC, susceptibles de changer.',
+    bookingPrompt: 'Envoyez votre demande par WhatsApp ou appelez-nous.', yourName: 'Votre nom', date: 'Date', time: 'Heure',
+    guestCount: 'Nombre de personnes', sendWhatsapp: 'Envoyer sur WhatsApp', callUs: 'Appeler 06 67 41 40 91',
+    darkMode: 'Sombre', lightMode: 'Clair', validation: "Renseignez le nom, la date, l'heure et le nombre de personnes.",
+    whatsappMessage: (name, date, time, guests) => `Bonjour, je souhaite réserver une table au nom de ${name} le ${date} à ${time} pour ${guests} personne(s).`,
+    slideLabel: (number) => `Aller à la diapositive ${number}`,
+  },
+  ar: {
+    pageTitle: 'سبيشال وان — مطعم في طنجة', navLabel: 'التنقل الرئيسي', mobileNavLabel: 'قائمة التنقل',
+    menuNav: 'القائمة', galleryNav: 'معرض الصور', philosophyNav: 'فلسفتنا', reviewsNav: 'آراء الزبائن', contactNav: 'اتصل بنا',
+    reserveShort: 'احجز', reserveTable: 'احجز طاولة', openMenu: 'فتح القائمة', close: 'إغلاق',
+    heroText: 'بيتزا وتاكوس وبرغر ومعكرونة ومشروبات طازجة تُحضّر فوراً في طنجة. أطباق سخية وخدمة سريعة.',
+    seeMenu: 'اكتشف القائمة', findUs: 'موقعنا', customerReviews: 'آراء الزبائن', menuTitle: 'قائمة الطعام',
+    pricesNote: 'جميع الأسعار بالدرهم المغربي (DH).', galleryTitle: 'معرض الصور',
+    galleryLead: 'مشروباتنا المنزلية وأطباقنا كما تُقدّم على المائدة.', philosophyTitle: 'فلسفتنا',
+    philosophyLead: 'ثلاثة التزامات نحرص عليها في كل خدمة.', freshTitle: 'مكونات طازجة',
+    freshText: 'مكونات عالية الجودة نختارها بعناية ونحضّرها في اليوم نفسه.', fastTitle: 'خدمة سريعة',
+    fastText: 'يصل طلبكم ساخناً وفي وقته، في المطعم أو عبر التوصيل.', easyBookingTitle: 'حجز سهل',
+    easyBookingText: 'مكالمة أو رسالة واتساب تكفي للاحتفاظ بطاولتكم.',
+    craftTitle: 'خبرة تُحضّر بشغف',
+    craftText: 'منذ 2025، يطوّر فريقنا وصفاته: عجينة البيتزا، والصلصات المنزلية، وطرق الطهي المتقنة. نحضّر كل طبق بالعناية نفسها.',
+    reviewsTitle: 'آراء الزبائن', reviewsLead: 'تجارب ضيوفنا.', previousPhoto: 'الصورة السابقة', nextPhoto: 'الصورة التالية',
+    previousReview: 'الرأي السابق', nextReview: 'الرأي التالي', restaurantSince: 'مطعم · طنجة · منذ 2025',
+    address: 'شارع حمري أعمري، طنجة 90100', openMaps: 'افتح في خرائط Google', hoursTitle: 'أوقات العمل',
+    hours: 'كل يوم، من 12:00 إلى 23:00', legal: '© 2025 مطعم سبيشال وان، طنجة. جميع الحقوق محفوظة. الأسعار بالدرهم شاملة الضريبة وقابلة للتغيير.',
+    bookingPrompt: 'أرسلوا طلبكم عبر واتساب أو اتصلوا بنا.', yourName: 'اسمكم', date: 'التاريخ', time: 'الوقت',
+    guestCount: 'عدد الأشخاص', sendWhatsapp: 'أرسل عبر واتساب', callUs: 'اتصلوا بنا: 06 67 41 40 91',
+    darkMode: 'داكن', lightMode: 'فاتح', validation: 'يرجى إدخال الاسم والتاريخ والوقت وعدد الأشخاص.',
+    whatsappMessage: (name, date, time, guests) => `مرحباً، أود حجز طاولة باسم ${name} بتاريخ ${date} على الساعة ${time} لعدد ${guests} أشخاص.`,
+    slideLabel: (number) => `انتقل إلى الشريحة ${number}`,
+  },
+};
+
+const MENU_AR = {
+  'Pizza': 'بيتزا', 'Tacos': 'تاكوس', 'Burgers': 'برغر', 'Sandwichs': 'سندويشات', 'Plats & pâtes': 'أطباق ومعكرونة',
+  'Entrées': 'مقبلات', 'Desserts': 'حلويات', 'Boissons': 'مشروبات', 'Les plats': 'الأطباق', 'Pâtes': 'المعكرونة',
+  'Entrées fraîches': 'مقبلات باردة', 'Entrées chaudes': 'مقبلات ساخنة', 'Jus & smoothies': 'عصائر وسموذي',
+  'Boissons gazeuses': 'مشروبات غازية', 'Eau': 'ماء',
+  'Pizza Margarita': 'بيتزا مارغريتا', 'Pizza Quatre Fromage': 'بيتزا أربعة أجبان', 'Pizza Peppéroni': 'بيتزا بيبروني',
+  'Pizza Poulet': 'بيتزا الدجاج', 'Pizza Bolonaise': 'بيتزا بولونيز', 'Pizza Saumon fumé': 'بيتزا السلمون المدخن',
+  'Pizza Quatre Saisons': 'بيتزا الفصول الأربعة', 'Pizza Fruit de Mer': 'بيتزا المأكولات البحرية',
+  'Tacos Poulet': 'تاكوس الدجاج', 'Tacos Viande hachée': 'تاكوس اللحم المفروم', 'Tacos Cordon Bleu': 'تاكوس كوردون بلو',
+  'Tacos Américain': 'تاكوس أمريكي', 'Tacos Mixe': 'تاكوس مشكل', 'Sheese Burger': 'برغر بالجبن',
+  'Classique Smash Burger': 'سمّاش برغر كلاسيكي', 'Chicken Burger': 'برغر الدجاج', 'Fish Burger': 'برغر السمك',
+  'Hamburger Américain': 'هامبرغر أمريكي', 'Burger Special One': 'برغر سبيشال وان',
+  'Sandwish Espagnole': 'سندويش إسباني', 'Sandwish Marocain': 'سندويش مغربي', 'La Mitraillette Belge': 'ميتراييت بلجيكية',
+  'Burrito Mexicain': 'بوريتو مكسيكي', 'Sandwish Américain': 'سندويش أمريكي', 'Brochettes Mixe Grillée': 'مشاوي مشكلة',
+  'Cordon Bleu': 'كوردون بلو', 'Emincé de Poulet': 'شرائح الدجاج', 'Filet de Saumon Grillée': 'فيليه سلمون مشوي',
+  'Spaghetti Sauce Tomate': 'سباغيتي بصلصة الطماطم', 'Spaghetti Bolonaise': 'سباغيتي بولونيز', 'Pasta Carbonara': 'باستا كاربونارا',
+  'Tagliatelle Alfredo': 'تالياتيلي ألفريدو', 'Linguine Fruit de Mer': 'لينغويني بالمأكولات البحرية', 'Spaghetti Saumon': 'سباغيتي بالسلمون',
+  'Salade Quinoa': 'سلطة الكينوا', 'Salade Russe': 'سلطة روسية', 'Salade César': 'سلطة سيزر', 'Salade Pêcheur': 'سلطة الصياد',
+  'Patatas Bravas': 'باتاتاس برافاس', 'Croquettes Fruit de Mer': 'كروكيت المأكولات البحرية', 'Soupe de Poissons': 'حساء السمك',
+  'Tortilla Espagnol': 'تورتيلا إسبانية', 'Gambas à l\'Ail': 'روبيان بالثوم', 'Tarte au Citron': 'تارت الليمون',
+  'Cheese Cake': 'تشيز كيك', 'Mousse au Chocolat Oreo': 'موس الشوكولاتة وأوريو', 'Tiramisu': 'تيراميسو', 'Banofee Pie': 'فطيرة البانوفّي',
+  'Salade de Fruit': 'سلطة فواكه', 'Jus de Citron': 'عصير الليمون', 'Jus d\'Orange': 'عصير البرتقال',
+  'Jus d\'Orange et Banane': 'عصير البرتقال والموز', 'Jus d\'Orange et Mangue': 'عصير البرتقال والمانجو',
+  'Jus d\'Orange et Ananas': 'عصير البرتقال والأناناس', 'Tropical': 'تروبيكال', 'Fruit Rouge': 'فواكه حمراء',
+  'Coca Cola': 'كوكاكولا', 'Fanta Citron': 'فانتا ليمون', 'Hawaï': 'هاواي', 'Pomme': 'تفاح', 'Coca Zéro': 'كوكاكولا زيرو',
+  'Sidi Ali 33cl': 'سيدي علي 33 سل', 'Sidi Ali 75cl': 'سيدي علي 75 سل',
+};
+
+let currentLanguage = localStorage.getItem('specialone-language') || 'fr';
+let currentTheme = localStorage.getItem('specialone-theme') || 'dark';
+
+function renderMenu() {
   const html = [];
   MENU.split('\n').forEach((line) => {
-    if (line.startsWith('##')) html.push(`<h4>${line.slice(2)}</h4>`);
-    else if (line.startsWith('#')) {
+    if (line.startsWith('##')) {
+      const label = line.slice(2);
+      html.push(`<h4>${currentLanguage === 'ar' ? MENU_AR[label] || label : label}</h4>`);
+    } else if (line.startsWith('#')) {
       if (html.length) html.push('</section>');
-      html.push(`<section class="cat"><h3>${line.slice(1)}</h3>`);
+      const label = line.slice(1);
+      html.push(`<section class="cat"><h3>${currentLanguage === 'ar' ? MENU_AR[label] || label : label}</h3>`);
     } else {
       const [name, price] = line.split('|');
-      html.push(`<div class="dish"><b>${name}</b><span class="dots-line"></span><i>${price} DH</i></div>`);
+      html.push(`<div class="dish"><b>${currentLanguage === 'ar' ? MENU_AR[name] || name : name}</b><span class="dots-line"></span><i>${price} DH</i></div>`);
     }
   });
   html.push('</section>');
   $('#menuCard').innerHTML = html.join('');
-})();
+}
+
+function applyLanguage(language) {
+  currentLanguage = language === 'ar' ? 'ar' : 'fr';
+  const strings = TEXT[currentLanguage];
+  document.documentElement.lang = currentLanguage;
+  document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+  document.title = strings.pageTitle;
+  $$('[data-i18n]').forEach((element) => { element.textContent = strings[element.dataset.i18n]; });
+  $$('[data-i18n-placeholder]').forEach((element) => { element.placeholder = strings[element.dataset.i18nPlaceholder]; });
+  $$('[data-i18n-aria]').forEach((element) => { element.setAttribute('aria-label', strings[element.dataset.i18nAria]); });
+  $$('[data-language]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.language === currentLanguage)));
+  $$('.dots button').forEach((button, index) => { button.setAttribute('aria-label', strings.slideLabel(index + 1)); });
+  $('#rErr').textContent = '';
+  renderMenu();
+  refreshDatePlaceholders();
+  localStorage.setItem('specialone-language', currentLanguage);
+}
+
+function applyTheme(theme) {
+  currentTheme = theme === 'light' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = currentTheme;
+  $$('[data-theme]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.theme === currentTheme)));
+  localStorage.setItem('specialone-theme', currentTheme);
+}
+
+renderMenu();
+applyLanguage(currentLanguage);
+applyTheme(currentTheme);
+$$('[data-language]').forEach((button) => button.addEventListener('click', () => applyLanguage(button.dataset.language)));
+$$('[data-theme]').forEach((button) => button.addEventListener('click', () => applyTheme(button.dataset.theme)));
+
+const preloader = $('#preloader');
+let countdown = 3;
+const loaderTimer = setInterval(() => {
+  countdown -= 1;
+  $('#loaderCount').textContent = countdown > 0 ? countdown : '';
+  if (countdown <= 0) {
+    clearInterval(loaderTimer);
+    preloader.classList.add('done');
+    setTimeout(() => preloader.remove(), 700);
+  }
+}, 1000);
+
+const revealObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.14 });
+$$('#menu h2, #menu .lead, #menu .cat, #galerie h2, #galerie .lead, #philosophie h2, #philosophie .lead, #philosophie .value, #avis h2, #avis .lead, #avis .review')
+  .forEach((element, index) => {
+    element.classList.add('reveal', index % 2 ? 'from-right' : 'from-left');
+    revealObserver.observe(element);
+  });
+
+function refreshDatePlaceholders() {
+  [dateInput, timeInput].forEach((input) => {
+    if (input) input.closest('.date-field').classList.toggle('has-value', Boolean(input.value));
+  });
+}
+[dateInput, timeInput].forEach((input) => {
+  input.addEventListener('input', refreshDatePlaceholders);
+  input.addEventListener('change', refreshDatePlaceholders);
+});
 
 /* ---------- Carrousel générique ---------- */
 function carousel({ track, prev, next, dots, perView, autoplay }) {
@@ -116,7 +268,7 @@ function carousel({ track, prev, next, dots, perView, autoplay }) {
     dotsEl.innerHTML = '';
     for (let k = 0; k <= max(); k++) {
       const d = document.createElement('button');
-      d.setAttribute('aria-label', 'Aller à la diapositive ' + (k + 1));
+      d.setAttribute('aria-label', TEXT[currentLanguage].slideLabel(k + 1));
       d.onclick = () => { go(k); restart(); };
       dotsEl.append(d);
     }
@@ -154,10 +306,6 @@ const openModal = () => { closeMobile(); modal.classList.add('on'); $('#rName').
 modal.onclick = (e) => { if (e.target === modal) closeModal(); };
 addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-// تفعيل فتح التقويم والساعة تلقائياً عند النقر على الحقول في الحواسيب والهواتف
-const dateInput = $('#rDate');
-const timeInput = $('#rTime');
-
 if (dateInput) {
   dateInput.addEventListener('click', () => {
     if (typeof dateInput.showPicker === 'function') {
@@ -178,11 +326,11 @@ $('#rSend').onclick = () => {
   const name = $('#rName').value.trim(), date = $('#rDate').value,
         time = $('#rTime').value, guests = $('#rGuests').value;
   if (!name || !date || !time || !guests) {
-    $('#rErr').textContent = 'Renseignez le nom, la date, l\'heure et le nombre de personnes.';
+    $('#rErr').textContent = TEXT[currentLanguage].validation;
     return;
   }
   $('#rErr').textContent = '';
-  const msg = `Bonjour, je souhaite réserver une table au nom de ${name} le ${date} à ${time} pour ${guests} personne(s).`;
+  const msg = TEXT[currentLanguage].whatsappMessage(name, date, time, guests);
   window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
   closeModal();
 };

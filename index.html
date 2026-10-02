@@ -12,28 +12,44 @@
 </head>
 <body>
 
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="loader-ring"><img src="logos/logo.jpg" alt=""><span id="loaderCount">3</span></div>
+</div>
+
 <header class="header">
   <div class="wrap nav">
     <a href="#top" aria-label="Special One, accueil"><img class="logo" src="logos/logo.jpg" alt="Special One"></a>
-    <nav class="links" aria-label="Navigation principale">
-      <a href="#menu">Menu</a>
-      <a href="#galerie">Galerie</a>
-      <a href="#philosophie">Philosophie</a>
+    <nav class="links" aria-label="Navigation principale" data-i18n-aria="navLabel">
+      <a href="#menu" data-i18n="menuNav">Menu</a>
+      <a href="#galerie" data-i18n="galleryNav">Galerie</a>
+      <a href="#philosophie" data-i18n="philosophyNav">Philosophie</a>
       
-      <a href="#avis">Avis</a>
-      <a href="#contact">Contact</a>
+      <a href="#avis" data-i18n="reviewsNav">Avis</a>
+      <a href="#contact" data-i18n="contactNav">Contact</a>
     </nav>
-    <button class="btn btn-pri nav-cta" data-res>Réserver</button>
-    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="language-switch" aria-label="Choisir la langue">
+      <button type="button" data-language="fr" aria-pressed="true">FR</button>
+      <button type="button" data-language="ar" aria-pressed="false">AR</button>
+    </div>
+    <button class="btn btn-pri nav-cta" data-res data-i18n="reserveShort">Réserver</button>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" data-i18n-aria="openMenu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
-  <nav class="mobile" id="mobile" aria-label="Navigation mobile">
-    <a href="#menu">Menu</a>
-    <a href="#galerie">Galerie</a>
-    <a href="#philosophie">Philosophie</a>
+  <nav class="mobile" id="mobile" aria-label="Navigation mobile" data-i18n-aria="mobileNavLabel">
+    <div class="language-switch mobile-language" aria-label="Choisir la langue">
+      <button type="button" data-language="fr" aria-pressed="true">FR</button>
+      <button type="button" data-language="ar" aria-pressed="false">AR</button>
+    </div>
+    <a href="#menu" data-i18n="menuNav">Menu</a>
+    <a href="#galerie" data-i18n="galleryNav">Galerie</a>
+    <a href="#philosophie" data-i18n="philosophyNav">Philosophie</a>
     
-    <a href="#avis">Avis</a>
-    <a href="#contact">Contact</a>
-    <button class="btn btn-pri" data-res>Réserver une table</button>
+    <a href="#avis" data-i18n="reviewsNav">Avis</a>
+    <a href="#contact" data-i18n="contactNav">Contact</a>
+    <button class="btn btn-pri" data-res data-i18n="reserveTable">Réserver une table</button>
+    <div class="theme-switch" aria-label="Choisir le thème">
+      <button type="button" data-theme="dark" aria-pressed="true" data-i18n="darkMode">Sombre</button>
+      <button type="button" data-theme="light" aria-pressed="false" data-i18n="lightMode">Clair</button>
+    </div>
   </nav>
 </header>
 
@@ -45,28 +61,28 @@
     </video>
     <div class="hero-in">
       <h1>Special One</h1>
-      <p>Pizzas, tacos, burgers, pâtes et cocktails frais, préparés minute à Tanger. Une cuisine généreuse et un service rapide.</p>
+      <p data-i18n="heroText">Pizzas, tacos, burgers, pâtes et cocktails frais, préparés minute à Tanger. Une cuisine généreuse et un service rapide.</p>
       <div class="hero-actions">
-        <a class="btn" href="#menu">Voir le menu</a>
-        <a class="btn" href="#contact">Nous trouver</a>
-        <a class="btn" href="#avis">Avis clients</a>
+        <a class="btn" href="#menu" data-i18n="seeMenu">Voir le menu</a>
+        <a class="btn" href="#contact" data-i18n="findUs">Nous trouver</a>
+        <a class="btn" href="#avis" data-i18n="customerReviews">Avis clients</a>
       </div>
-      <button class="btn btn-pri btn-lg" data-res>Réserver une table</button>
+      <button class="btn btn-pri btn-lg" data-res data-i18n="reserveTable">Réserver une table</button>
     </div>
   </section>
 
   <section id="menu">
     <div class="wrap">
-      <h2>La carte</h2>
-      <p class="lead">Tous les prix sont en dirhams marocains (DH).</p>
+      <h2 data-i18n="menuTitle">La carte</h2>
+      <p class="lead" data-i18n="pricesNote">Tous les prix sont en dirhams marocains (DH).</p>
       <div class="menu-card" id="menuCard"></div>
     </div>
   </section>
 
   <section id="galerie">
     <div class="wrap">
-      <h2>Galerie</h2>
-      <p class="lead">Nos cocktails maison et nos plats, tels qu'ils arrivent à table.</p>
+      <h2 data-i18n="galleryTitle">Galerie</h2>
+      <p class="lead" data-i18n="galleryLead">Nos cocktails maison et nos plats, tels qu'ils arrivent à table.</p>
       <div class="viewport"><div class="track" id="galTrack">
         <figure class="slide"><img src="imgs/img1.jpg" alt="Cocktail Tropical" loading="lazy"></figure>
         <figure class="slide"><img src="imgs/img2.jpg" alt="Citron Menthe" loading="lazy"></figure>
@@ -75,8 +91,8 @@
         <figure class="slide"><img src="imgs/img5.jpg" alt="Pizza partagée à table" loading="lazy"></figure>
       </div></div>
       <div class="controls">
-        <button class="arrow" id="galPrev" aria-label="Photo précédente">←</button>
-        <button class="arrow" id="galNext" aria-label="Photo suivante">→</button>
+        <button class="arrow" id="galPrev" aria-label="Photo précédente" data-i18n-aria="previousPhoto">←</button>
+        <button class="arrow" id="galNext" aria-label="Photo suivante" data-i18n-aria="nextPhoto">→</button>
         <div class="dots" id="galDots"></div>
       </div>
     </div>
@@ -84,21 +100,21 @@
 
   <section id="philosophie">
     <div class="wrap">
-      <h2>Notre philosophie</h2>
-      <p class="lead">Trois engagements que nous tenons à chaque service.</p>
+      <h2 data-i18n="philosophyTitle">Notre philosophie</h2>
+      <p class="lead" data-i18n="philosophyLead">Trois engagements que nous tenons à chaque service.</p>
       <div class="values">
-        <article class="value"><h3>Produits frais</h3><p>Des ingrédients de qualité, choisis avec soin et cuisinés le jour même.</p></article>
-        <article class="value"><h3>Service rapide</h3><p>Votre commande arrive chaude et à l'heure, sur place comme en livraison.</p></article>
-        <article class="value"><h3>Réservation simple</h3><p>Un appel ou un message WhatsApp suffit pour garder votre table.</p></article>
+        <article class="value"><h3 data-i18n="freshTitle">Produits frais</h3><p data-i18n="freshText">Des ingrédients de qualité, choisis avec soin et cuisinés le jour même.</p></article>
+        <article class="value"><h3 data-i18n="fastTitle">Service rapide</h3><p data-i18n="fastText">Votre commande arrive chaude et à l'heure, sur place comme en livraison.</p></article>
+        <article class="value"><h3 data-i18n="easyBookingTitle">Réservation simple</h3><p data-i18n="easyBookingText">Un appel ou un message WhatsApp suffit pour garder votre table.</p></article>
       </div>
-      <article class="value wide"><h3>Le savoir-faire, avec passion</h3><p>Depuis 2025, notre équipe affine ses recettes : pâte à pizza, sauces maison, cuissons maîtrisées. Chaque assiette est préparée avec le même soin.</p></article>
+      <article class="value wide"><h3 data-i18n="craftTitle">Le savoir-faire, avec passion</h3><p data-i18n="craftText">Depuis 2025, notre équipe affine ses recettes : pâte à pizza, sauces maison, cuissons maîtrisées. Chaque assiette est préparée avec le même soin.</p></article>
     </div>
   </section>
 
   <section id="avis">
     <div class="wrap">
-      <h2>Avis clients</h2>
-      <p class="lead">Ce que disent nos invités.</p>
+      <h2 data-i18n="reviewsTitle">Avis clients</h2>
+      <p class="lead" data-i18n="reviewsLead">Ce que disent nos invités.</p>
       <div class="viewport"><div class="track" id="revTrack">
         <article class="review"><div class="stars" aria-label="5 étoiles sur 5">★★★★★</div><p> " The food is very good, the flavors are so good it feels like your going to heaven and you easily get full ,the service is great! They are fun and friendly 😊 and the place is very nice and and beautiful although it isn't popular yet, it has great stuff , I hope this restaurant becomes super famous! " </p><span>Salma B.</span></article>
         <article class="review"><div class="stars" aria-label="5 étoiles sur 5">★★★★★</div><p> " Excellent iftar, everything was delicious. Very welcoming staff and top-notch service. I highly recommend it! " </p><span>Youssef A.</span></article>
@@ -106,8 +122,8 @@
         <article class="review"><div class="stars" aria-label="4 étoiles sur 5">★★★★☆</div><p>" It was a wonderful experience, a calm and clean place, the food was good quality and very reasonably priced, the staff were attentive and the service was quick. I highly recommend it ❤️❤️ "</p><span>Rachid R.</span></article>
       </div></div>
       <div class="controls">
-        <button class="arrow" id="revPrev" aria-label="Avis précédent">←</button>
-        <button class="arrow" id="revNext" aria-label="Avis suivant">→</button>
+        <button class="arrow" id="revPrev" aria-label="Avis précédent" data-i18n-aria="previousReview">←</button>
+        <button class="arrow" id="revNext" aria-label="Avis suivant" data-i18n-aria="nextReview">→</button>
         <div class="dots" id="revDots"></div>
       </div>
     </div>
@@ -117,36 +133,39 @@
 <footer id="contact">
   <div class="wrap">
     <div class="foot-grid">
-      <div><img class="logo" src="logos/logo.jpg" alt="Special One"><p>Restaurant · Tanger · depuis 2025</p></div>
+      <div><img class="logo" src="logos/logo.jpg" alt="Special One"><p data-i18n="restaurantSince">Restaurant · Tanger · depuis 2025</p></div>
       <div>
-        <h4>Nous trouver</h4>
-        <p>Rue Hamri Aamri, Tanger 90100</p>
-        <a href="https://maps.app.goo.gl/qFe6HUuUTqteDPo66" target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
-        <h4>Horaires</h4>
-        <p>Tous les jours, 12h00 – 23h00</p>
+        <h4 data-i18n="findUs">Nous trouver</h4>
+        <p data-i18n="address">Rue Hamri Aamri, Tanger 90100</p>
+        <a href="https://maps.app.goo.gl/qFe6HUuUTqteDPo66" target="_blank" rel="noopener" data-i18n="openMaps">Ouvrir dans Google Maps</a>
+        <h4 data-i18n="hoursTitle">Horaires</h4>
+        <p data-i18n="hours">Tous les jours, 12h00 – 23h00</p>
       </div>
       <div>
-        <h4>Contact</h4>
+        <h4 data-i18n="contactNav">Contact</h4>
         <a href="tel:+212667414091">06 67 41 40 91</a>
         <a href="https://wa.me/212667414091" target="_blank" rel="noopener">WhatsApp</a>
         <a href="https://www.instagram.com/special.one.tanger/" target="_blank" rel="noopener">Instagram @special.one.tanger</a>
       </div>
     </div>
-    <p class="legal">© 2025 Special One Restaurant, Tanger. Tous droits réservés. Prix en DH, TTC, susceptibles de changer.</p>
+    <p class="legal" data-i18n="legal">© 2025 Special One Restaurant, Tanger. Tous droits réservés. Prix en DH, TTC, susceptibles de changer.</p>
   </div>
 </footer>
 
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="box">
-    <button class="close" id="modalClose" aria-label="Fermer">×</button>
-    <h3 id="modalTitle">Réserver une table</h3>
-    <p>Envoyez votre demande par WhatsApp ou appelez-nous.</p>
-    <input id="rName" placeholder="Votre nom" autocomplete="name">
-    <div class="row2"><input id="rDate" type="date" aria-label="Date"><input id="rTime" type="time" aria-label="Heure"></div>
-    <input id="rGuests" type="number" min="1" max="20" placeholder="Nombre de personnes">
+    <button class="close" id="modalClose" aria-label="Fermer" data-i18n-aria="close">×</button>
+    <h3 id="modalTitle" data-i18n="reserveTable">Réserver une table</h3>
+    <p data-i18n="bookingPrompt">Envoyez votre demande par WhatsApp ou appelez-nous.</p>
+    <input id="rName" placeholder="Votre nom" data-i18n-placeholder="yourName" aria-label="Votre nom" data-i18n-aria="yourName" autocomplete="name">
+    <div class="row2">
+      <label class="date-field"><input id="rDate" type="date" aria-label="Date" data-i18n-aria="date"><span class="date-placeholder" data-i18n="date">Date</span></label>
+      <label class="date-field"><input id="rTime" type="time" aria-label="Heure" data-i18n-aria="time"><span class="date-placeholder" data-i18n="time">Heure</span></label>
+    </div>
+    <input id="rGuests" type="number" min="1" max="20" placeholder="Nombre de personnes" data-i18n-placeholder="guestCount" aria-label="Nombre de personnes" data-i18n-aria="guestCount">
     <p class="err" id="rErr" role="alert"></p>
-    <button class="btn btn-pri" id="rSend">Envoyer sur WhatsApp</button>
-    <a class="btn" href="tel:+212667414091">Appeler 06 67 41 40 91</a>
+    <button class="btn btn-pri" id="rSend" data-i18n="sendWhatsapp">Envoyer sur WhatsApp</button>
+    <a class="btn" href="tel:+212667414091" data-i18n="callUs">Appeler 06 67 41 40 91</a>
   </div>
 </div>
 
