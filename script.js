@@ -159,6 +159,9 @@ const MENU_AR = {
   'Jus d\'Orange et Ananas': 'عصير البرتقال والأناناس', 'Tropical': 'تروبيكال', 'Fruit Rouge': 'فواكه حمراء',
   'Coca Cola': 'كوكاكولا', 'Fanta Citron': 'فانتا ليمون', 'Hawaï': 'هاواي', 'Pomme': 'تفاح', 'Coca Zéro': 'كوكاكولا زيرو',
   'Sidi Ali 33cl': 'سيدي علي 33 سل', 'Sidi Ali 75cl': 'سيدي علي 75 سل',
+ 
+ 
+  
 };
 
 let currentLanguage = localStorage.getItem('specialone-language') || 'fr';

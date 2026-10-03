@@ -587,3 +587,74 @@ html[dir="rtl"] .reveal.revealed { transform: translateX(0); }
   * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+
+
+
+
+
+
+/* ---------- Localisation Section Styles ---------- */
+.location-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.location-text {
+  background: var(--surface);
+  border: 1px solid var(--orange);
+  padding: 40px;
+}
+
+.location-title {
+  font-size: 26px;
+  font-style: italic;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+.location-desc {
+  color: var(--muted);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.location-details p {
+  color: var(--text);
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.location-map-box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.iframe-wrapper {
+  border: 1px solid var(--orange);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.iframe-wrapper iframe {
+  display: block;
+  filter: contrast(90%) invert(90%) hue-rotate(180deg); 
+}
+
+[data-theme="light"] .iframe-wrapper iframe {
+  filter: none;
+}
+
+.location-btn {
+  width: 100%;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .location-container {
+    grid-template-columns: 1fr;
+  }
+}
