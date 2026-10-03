@@ -86,6 +86,9 @@ const TEXT = {
   fr: {
     pageTitle: 'Special One — Restaurant à Tanger', navLabel: 'Navigation principale', mobileNavLabel: 'Navigation mobile',
     menuNav: 'Menu', galleryNav: 'Galerie', philosophyNav: 'Philosophie', reviewsNav: 'Avis', contactNav: 'Contact',
+    locationNav: 'Localisation', locationTitle: 'Notre localisation', locationLead: 'Venez nous rendre visite au cœur de la ville.',
+    locationSubtitle: 'Trouvez-nous facilement', locationDesc: "Nous sommes situés dans un quartier vivant et accessible. Passez nous voir pour profiter d'un moment chaleureux et d'un service d'exception à Tanger.",
+    addressLabel: 'Adresse :', phoneLabel: 'Téléphone :',
     reserveShort: 'Réserver', reserveTable: 'Réserver une table', openMenu: 'Ouvrir le menu', close: 'Fermer',
     heroText: 'Pizzas, tacos, burgers, pâtes et cocktails frais, préparés minute à Tanger. Une cuisine généreuse et un service rapide.',
     seeMenu: 'Voir le menu', findUs: 'Nous trouver', customerReviews: 'Avis clients', menuTitle: 'La carte',
@@ -102,14 +105,17 @@ const TEXT = {
     address: 'Rue Hamri Aamri, Tanger 90100', openMaps: 'Ouvrir dans Google Maps', hoursTitle: 'Horaires',
     hours: 'Tous les jours, 12h00 – 23h00', legal: '© 2025 Special One Restaurant, Tanger. Tous droits réservés. Prix en DH, TTC, susceptibles de changer.',
     bookingPrompt: 'Envoyez votre demande par WhatsApp ou appelez-nous.', yourName: 'Votre nom', date: 'Date', time: 'Heure',
-    guestCount: 'Nombre de personnes', sendWhatsapp: 'Envoyer sur WhatsApp', callUs: 'Appeler 06 67 41 40 91',
+    guestCount: 'Nombre de personnes', sendWhatsapp: 'Confirmer sur WhatsApp', callUs: 'Appeler 06 67 41 40 91',
     darkMode: 'Sombre', lightMode: 'Clair', validation: "Renseignez le nom, la date, l'heure et le nombre de personnes.",
-    whatsappMessage: (name, date, time, guests) => `Bonjour, je souhaite réserver une table au nom de ${name} le ${date} à ${time} pour ${guests} personne(s).`,
+    whatsappMessage: (name, date, time, guests) => `Bonjour, je souhaite réserver une table :\n• Nom : ${name}\n• Date : ${date}\n• Heure : ${time}\n• Nombre de personnes : ${guests}`,
     slideLabel: (number) => `Aller à la diapositive ${number}`,
   },
   ar: {
     pageTitle: 'سبيشال وان — مطعم في طنجة', navLabel: 'التنقل الرئيسي', mobileNavLabel: 'قائمة التنقل',
     menuNav: 'القائمة', galleryNav: 'معرض الصور', philosophyNav: 'فلسفتنا', reviewsNav: 'آراء الزبائن', contactNav: 'اتصل بنا',
+    locationNav: 'الموقع', locationTitle: 'موقعنا', locationLead: 'تفضلوا بزيارتنا في قلب المدينة.',
+    locationSubtitle: 'اعثروا علينا بسهولة', locationDesc: 'نحن في حي حيوي يسهل الوصول إليه. مرّوا بنا لتستمتعوا بلحظة دافئة وخدمة متميزة في طنجة.',
+    addressLabel: 'العنوان :', phoneLabel: 'الهاتف :',
     reserveShort: 'احجز', reserveTable: 'احجز طاولة', openMenu: 'فتح القائمة', close: 'إغلاق',
     heroText: 'بيتزا وتاكوس وبرغر ومعكرونة ومشروبات طازجة تُحضّر فوراً في طنجة. أطباق سخية وخدمة سريعة.',
     seeMenu: 'اكتشف القائمة', findUs: 'موقعنا', customerReviews: 'آراء الزبائن', menuTitle: 'قائمة الطعام',
@@ -126,9 +132,9 @@ const TEXT = {
     address: 'شارع حمري أعمري، طنجة 90100', openMaps: 'افتح في خرائط Google', hoursTitle: 'أوقات العمل',
     hours: 'كل يوم، من 12:00 إلى 23:00', legal: '© 2025 مطعم سبيشال وان، طنجة. جميع الحقوق محفوظة. الأسعار بالدرهم شاملة الضريبة وقابلة للتغيير.',
     bookingPrompt: 'أرسلوا طلبكم عبر واتساب أو اتصلوا بنا.', yourName: 'اسمكم', date: 'التاريخ', time: 'الوقت',
-    guestCount: 'عدد الأشخاص', sendWhatsapp: 'أرسل عبر واتساب', callUs: 'اتصلوا بنا: 06 67 41 40 91',
+    guestCount: 'عدد الأشخاص', sendWhatsapp: 'تأكيد عبر واتساب', callUs: 'اتصلوا بنا: 06 67 41 40 91',
     darkMode: 'داكن', lightMode: 'فاتح', validation: 'يرجى إدخال الاسم والتاريخ والوقت وعدد الأشخاص.',
-    whatsappMessage: (name, date, time, guests) => `مرحباً، أود حجز طاولة باسم ${name} بتاريخ ${date} على الساعة ${time} لعدد ${guests} أشخاص.`,
+    whatsappMessage: (name, date, time, guests) => `مرحباً، أود حجز طاولة :\n• الاسم : ${name}\n• التاريخ : ${date}\n• الوقت : ${time}\n• عدد الأشخاص : ${guests}`,
     slideLabel: (number) => `انتقل إلى الشريحة ${number}`,
   },
 };
@@ -196,6 +202,8 @@ function applyLanguage(language) {
   $$('[data-i18n-placeholder]').forEach((element) => { element.placeholder = strings[element.dataset.i18nPlaceholder]; });
   $$('[data-i18n-aria]').forEach((element) => { element.setAttribute('aria-label', strings[element.dataset.i18nAria]); });
   $$('[data-language]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.language === currentLanguage)));
+  $('#langCurrent').textContent = currentLanguage.toUpperCase();
+  closeLangMenu();
   $$('.dots button').forEach((button, index) => { button.setAttribute('aria-label', strings.slideLabel(index + 1)); });
   $('#rErr').textContent = '';
   renderMenu();
@@ -206,7 +214,7 @@ function applyLanguage(language) {
 function applyTheme(theme) {
   currentTheme = theme === 'light' ? 'light' : 'dark';
   document.documentElement.dataset.theme = currentTheme;
-  $$('[data-theme]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.theme === currentTheme)));
+  $$('button[data-theme]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.theme === currentTheme)));
   localStorage.setItem('specialone-theme', currentTheme);
 }
 
@@ -214,7 +222,20 @@ renderMenu();
 applyLanguage(currentLanguage);
 applyTheme(currentTheme);
 $$('[data-language]').forEach((button) => button.addEventListener('click', () => applyLanguage(button.dataset.language)));
-$$('[data-theme]').forEach((button) => button.addEventListener('click', () => applyTheme(button.dataset.theme)));
+$$('button[data-theme]').forEach((button) => button.addEventListener('click', () => applyTheme(button.dataset.theme)));
+
+/* ---------- Liste déroulante de langue ---------- */
+function closeLangMenu() {
+  $('#langDd').classList.remove('open');
+  $('#langBtn').setAttribute('aria-expanded', 'false');
+}
+$('#langBtn').addEventListener('click', (e) => {
+  e.stopPropagation();
+  const open = $('#langDd').classList.toggle('open');
+  $('#langBtn').setAttribute('aria-expanded', String(open));
+});
+document.addEventListener('click', (e) => { if (!e.target.closest('#langDd')) closeLangMenu(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLangMenu(); });
 
 const preloader = $('#preloader');
 let countdown = 3;
@@ -241,6 +262,10 @@ $$('#menu h2, #menu .lead, #menu .cat, #galerie h2, #galerie .lead, #philosophie
     element.classList.add('reveal', index % 2 ? 'from-right' : 'from-left');
     revealObserver.observe(element);
   });
+$$('#location .section-header, #location .location-text, #location .location-map-box').forEach((element) => {
+  element.classList.add('reveal', element.classList.contains('location-map-box') ? 'from-right' : 'from-left');
+  revealObserver.observe(element);
+});
 
 function refreshDatePlaceholders() {
   [dateInput, timeInput].forEach((input) => {

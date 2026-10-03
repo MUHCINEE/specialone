@@ -8,7 +8,7 @@
 <meta name="description" content="Special One, restaurant à Tanger : pizzas, tacos, burgers, pâtes et cocktails frais.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,600&family=Noto+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,26 +24,25 @@
       <a href="#menu" data-i18n="menuNav">Menu</a>
       <a href="#galerie" data-i18n="galleryNav">Galerie</a>
       <a href="#philosophie" data-i18n="philosophyNav">Philosophie</a>
-      
+      <a href="#location" data-i18n="locationNav">Localisation</a>
       <a href="#avis" data-i18n="reviewsNav">Avis</a>
       <a href="#contact" data-i18n="contactNav">Contact</a>
     </nav>
-    <div class="language-switch" aria-label="Choisir la langue">
-      <button type="button" data-language="fr" aria-pressed="true">FR</button>
-      <button type="button" data-language="ar" aria-pressed="false">AR</button>
+    <div class="lang-dd" id="langDd">
+      <button type="button" class="lang-current" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Langue / اللغة"><span id="langCurrent">FR</span><span class="caret" aria-hidden="true">▼</span></button>
+      <ul class="lang-menu" role="listbox">
+        <li><button type="button" data-language="fr" aria-pressed="true">Français (FR)</button></li>
+        <li><button type="button" data-language="ar" aria-pressed="false" lang="ar">العربية (AR)</button></li>
+      </ul>
     </div>
     <button class="btn btn-pri nav-cta" data-res data-i18n="reserveShort">Réserver</button>
     <button class="burger" id="burger" aria-label="Ouvrir le menu" data-i18n-aria="openMenu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
   <nav class="mobile" id="mobile" aria-label="Navigation mobile" data-i18n-aria="mobileNavLabel">
-    <div class="language-switch mobile-language" aria-label="Choisir la langue">
-      <button type="button" data-language="fr" aria-pressed="true">FR</button>
-      <button type="button" data-language="ar" aria-pressed="false">AR</button>
-    </div>
     <a href="#menu" data-i18n="menuNav">Menu</a>
     <a href="#galerie" data-i18n="galleryNav">Galerie</a>
     <a href="#philosophie" data-i18n="philosophyNav">Philosophie</a>
-    
+    <a href="#location" data-i18n="locationNav">Localisation</a>
     <a href="#avis" data-i18n="reviewsNav">Avis</a>
     <a href="#contact" data-i18n="contactNav">Contact</a>
     <button class="btn btn-pri" data-res data-i18n="reserveTable">Réserver une table</button>
@@ -133,42 +132,29 @@
 
 
 
-<!-- Localisation Section -->
+<!-- Localisation -->
 <section id="location">
   <div class="wrap">
-    <div class="section-header animate-slide-left">
-      <h2>Notre Localisation</h2>
-      <p class="lead">Venez nous rendre visite au cœur de la ville.</p>
+    <div class="section-header">
+      <h2 data-i18n="locationTitle">Notre localisation</h2>
+      <p class="lead" data-i18n="locationLead">Venez nous rendre visite au cœur de la ville.</p>
     </div>
-    
+
     <div class="location-container">
-      <div class="location-text animate-slide-left">
-        <h3 class="location-title">Trouvez-nous facilement</h3>
-        <p class="location-desc">
-          Nous sommes situés dans un quartier vivant et accessible. 
-          Passez nous voir pour profiter d'un moment chaleureux et d'un service d'exception à Tanger.
-        </p>
+      <div class="location-text">
+        <h3 class="location-title" data-i18n="locationSubtitle">Trouvez-nous facilement</h3>
+        <p class="location-desc" data-i18n="locationDesc">Nous sommes situés dans un quartier vivant et accessible. Passez nous voir pour profiter d'un moment chaleureux et d'un service d'exception à Tanger.</p>
         <div class="location-details">
-          <p><strong>Adresse :</strong> Rue Hamri Aamri, Tanger 90100</p>
-          <p><strong>Téléphone :</strong> +212 6 67 41 40 91</p>
+          <p><strong data-i18n="addressLabel">Adresse :</strong> <span data-i18n="address">Rue Hamri Aamri, Tanger 90100</span></p>
+          <p><strong data-i18n="phoneLabel">Téléphone :</strong> <a href="tel:+212667414091" dir="ltr">+212 6 67 41 40 91</a></p>
         </div>
       </div>
 
-      <div class="location-map-box animate-slide-right">
+      <div class="location-map-box">
         <div class="iframe-wrapper">
-            <iframe 
-                src="https://maps.google.com/maps?q=35.7561305,-5.8398555&z=17&output=embed" 
-                width="100%" 
-                height="320" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+          <iframe title="Special One, Tanger" src="https://maps.google.com/maps?q=35.7561305,-5.8398555&amp;z=17&amp;output=embed" width="100%" height="320" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <a href="https://maps.app.goo.gl/qFe6HUuUTqteDPo66" target="_blank" class="btn btn-pri location-btn">
-          Ouvrir dans Google Maps
-        </a>
+        <a href="https://maps.app.goo.gl/qFe6HUuUTqteDPo66" target="_blank" rel="noopener" class="btn btn-pri location-btn" data-i18n="openMaps">Ouvrir dans Google Maps</a>
       </div>
     </div>
   </div>
@@ -208,7 +194,7 @@
     </div>
     <input id="rGuests" type="number" min="1" max="20" placeholder="Nombre de personnes" data-i18n-placeholder="guestCount" aria-label="Nombre de personnes" data-i18n-aria="guestCount">
     <p class="err" id="rErr" role="alert"></p>
-    <button class="btn btn-pri" id="rSend" data-i18n="sendWhatsapp">Envoyer sur WhatsApp</button>
+    <button class="btn btn-pri" id="rSend" data-i18n="sendWhatsapp">Confirmer sur WhatsApp</button>
     <a class="btn" href="tel:+212667414091" data-i18n="callUs">Appeler 06 67 41 40 91</a>
   </div>
 </div>
